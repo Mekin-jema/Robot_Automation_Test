@@ -8,7 +8,7 @@ ${URL}  https://www.saucedemo.com/
 Valid Login Test
     [Documentation]  Test to verify valid login functionality
     Open Browser  ${URL}  chrome
-    Input Text  id=user-name  standard_user
+    Input Text  id=user-name    standard_user
     Input Text  id=password  secret_sauce
     Click Button  id=login-button
     Wait Until Page Contains Element  xpath=//div[@class='inventory_list']  timeout=10s
@@ -41,4 +41,4 @@ Locked Out User Test
     Capture Page Screenshot  output/locked_out_user_test.png        
 
 *** Keywords ***
-    [Teardown]  Close Browser
+# No custom keywords needed here; test-level teardowns already close the browser.

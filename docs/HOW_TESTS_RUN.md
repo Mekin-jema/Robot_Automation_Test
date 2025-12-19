@@ -219,7 +219,7 @@ That’s the full flow from the entry command to the final reports, with each fi
 - Rerun failures:
   - First run writes `results/output.xml`
   - Rerun only failed: `robot --rerunfailed results/output.xml tests/`
-
+w
 ---
 
 ## 12) Reports Anatomy
