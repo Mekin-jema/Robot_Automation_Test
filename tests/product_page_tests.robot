@@ -26,8 +26,8 @@ Sort Products Z To A
     [Tags]    sort    regression
     Open Inventory Page
     Sort Products    za
-    Sleep    1s
     Page Should Contain Element    ${INVENTORY_LIST}
+    Verify First Item Name Is    ${EXPECTED_FIRST_ZA}
 
 Add From Product Detail
     [Documentation]    Add an item from product detail page
@@ -36,5 +36,6 @@ Add From Product Detail
     Open First Product Details
     Click Button    ${FIRST_ITEM_ADD_BUTTON}
     Click Element   ${CART_ICON}
+    Wait Until Location Contains    cart.html    timeout=${SHORT_TIMEOUT}
     Page Should Contain Element    ${CART_BADGE}
     Element Text Should Be    ${CART_BADGE}    1

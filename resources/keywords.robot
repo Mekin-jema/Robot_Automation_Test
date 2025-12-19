@@ -1,5 +1,7 @@
 *** Settings ***
 Library           SeleniumLibrary
+Library           String
+Library           Collections
 Resource          variables.robot
 
 Documentation     Common keywords for SauceDemo flows
@@ -120,11 +122,31 @@ Complete Checkout
     Wait Until Page Contains Element    ${ORDER_CONFIRM_TEXT}    timeout=${DEFAULT_TIMEOUT}
     Page Should Contain    THANK YOU
 
+Continue Shopping
+    [Documentation]    Returns to inventory from cart page
+    Click Button    ${CONTINUE_SHOPPING_BUTTON}
+    Wait Until Location Contains    inventory.html    timeout=${SHORT_TIMEOUT}
+
+Cancel Checkout From Step One
+    [Documentation]    Cancels at step one, returns to cart page
+    Click Button    ${CANCEL_BUTTON}
+    Wait Until Location Contains    cart.html    timeout=${SHORT_TIMEOUT}
+
+Cancel Checkout From Step Two
+    [Documentation]    Cancels at step two, returns to inventory page
+    Click Button    ${CANCEL_BUTTON}
+    Wait Until Location Contains    inventory.html    timeout=${SHORT_TIMEOUT}
+
 Open First Product Details
     [Documentation]    Opens the first product details page from inventory
     Click Element    ${FIRST_PRODUCT_LINK}
     Wait Until Location Contains    inventory-item.html    timeout=${SHORT_TIMEOUT}
     Page Should Contain Element    ${PRODUCT_TITLE}
+
+Open First Product By Image
+    [Documentation]    Opens product details by clicking product image
+    Click Element    ${FIRST_PRODUCT_IMAGE_LINK}
+    Wait Until Location Contains    inventory-item.html    timeout=${SHORT_TIMEOUT}
 
 Back To Inventory
     [Documentation]    Returns to inventory list from product details
@@ -136,6 +158,77 @@ Sort Products
     [Arguments]    ${sort_value}
     Select From List By Value    ${SORT_SELECT}    ${sort_value}
     Sleep    0.5s
+
+Verify First Item Name Is
+    [Documentation]    Asserts the first item name equals expected
+    [Arguments]    ${expected}
+    ${name}=    Get Text    ${FIRST_ITEM_NAME}
+    Should Be Equal    ${name}    ${expected}
+
+Verify Footer Links Present
+    [Documentation]    Verifies social links are visible in footer
+    Page Should Contain Element    ${TWITTER_LINK}
+    Page Should Contain Element    ${FACEBOOK_LINK}
+    Page Should Contain Element    ${LINKEDIN_LINK}
+
+Open External Link And Verify Domain
+    [Documentation]    Clicks a footer link, switches to new tab, validates domain, and returns
+    [Arguments]    ${link_locator}    ${expected_domain}
+    Click Element    ${link_locator}
+    Wait For Number Of Windows    2    ${DEFAULT_TIMEOUT}
+    Switch Window    NEW
+    Location Should Contain    ${expected_domain}
+    Close Window
+    Switch Window    MAIN
+
+Verify Overview Totals Single Item
+    [Documentation]    Verifies overview subtotal equals the single item price and total is positive
+    ${subtotal_text}=    Get Text    ${SUMMARY_SUBTOTAL}
+    ${subtotal_text}=    Replace String    ${subtotal_text}    Item total: $    ${EMPTY}
+    ${subtotal}=    Convert To Number    ${subtotal_text}
+    ${price_text}=    Get Text    ${OVERVIEW_FIRST_ITEM_PRICE}
+    ${price_text}=    Replace String    ${price_text}    $    ${EMPTY}
+    ${item_price}=    Convert To Number    ${price_text}
+    Should Be Equal As Numbers    ${subtotal}    ${item_price}
+    ${tax_text}=    Get Text    ${SUMMARY_TAX}
+    ${tax_text}=    Replace String    ${tax_text}    Tax: $    ${EMPTY}
+    ${tax}=    Convert To Number    ${tax_text}
+    ${total_text}=    Get Text    ${SUMMARY_TOTAL}
+    ${total_text}=    Replace String    ${total_text}    Total: $    ${EMPTY}
+    ${total}=    Convert To Number    ${total_text}
+    Should Be True    ${total} > 0
+
+Wait For Number Of Windows
+    [Documentation]    Waits until the number of browser windows equals expected
+    [Arguments]    ${expected}    ${timeout}=10s    ${interval}=500ms
+    Wait Until Keyword Succeeds    ${timeout}    ${interval}    Validate Window Count    ${expected}
+
+Validate Window Count
+    [Documentation]    Helper to assert current window handle count
+    [Arguments]    ${expected}
+    ${handles}=    Get Window Handles
+    Length Should Be    ${handles}    ${expected}
+
+Verify Inventory Item Count Is
+    [Documentation]    Verifies the number of inventory items rendered
+    [Arguments]    ${expected_count}
+    ${count}=    Get Element Count    ${INVENTORY_ITEM_NAME_ALL}
+    Should Be Equal As Integers    ${count}    ${expected_count}
+
+Verify First Item Price Is
+    [Documentation]    Verifies first item price text equals expected
+    [Arguments]    ${expected_price}
+    ${price}=    Get Text    ${FIRST_ITEM_PRICE}
+    Should Be Equal    ${price}    ${expected_price}
+
+Proceed To Overview
+    [Documentation]    Proceeds from checkout step one to overview step two
+    Click Button    ${CONTINUE_BUTTON}
+    Wait Until Location Contains    checkout-step-two.html    timeout=${SHORT_TIMEOUT}
+
+Go Back
+    [Documentation]    Navigates browser back
+    Go Back
 
 Open Menu
     [Documentation]    Opens the hamburger side menu

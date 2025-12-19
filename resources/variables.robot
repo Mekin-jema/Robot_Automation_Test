@@ -51,3 +51,35 @@ ${MENU_ALL_ITEMS}          id=inventory_sidebar_link
 ${MENU_ABOUT}              id=about_sidebar_link
 ${MENU_LOGOUT}             id=logout_sidebar_link
 ${MENU_RESET}              id=reset_sidebar_link
+
+# Cart & checkout extras
+${CONTINUE_SHOPPING_BUTTON}    id=continue-shopping
+${CANCEL_BUTTON}               id=cancel
+
+# Product list helpers
+${FIRST_ITEM_NAME}             xpath=(//div[@class='inventory_item']//div[@class='inventory_item_name'])[1]
+${EXPECTED_FIRST_AZ}           Sauce Labs Backpack
+${EXPECTED_FIRST_ZA}           Test.allTheThings() T-Shirt (Red)
+${EXPECTED_FIRST_LOHI}         Sauce Labs Onesie
+${EXPECTED_FIRST_HILO}         Sauce Labs Fleece Jacket
+${FIRST_PRODUCT_IMAGE_LINK}    id=item_4_img_link
+
+# Footer social links
+${TWITTER_LINK}                css=.social_twitter
+${FACEBOOK_LINK}               css=.social_facebook
+${LINKEDIN_LINK}               css=.social_linkedin
+
+# Overview totals and price/count locators
+${SUMMARY_SUBTOTAL}            css=.summary_subtotal_label
+${SUMMARY_TAX}                 css=.summary_tax_label
+${SUMMARY_TOTAL}               css=.summary_total_label
+${FIRST_ITEM_PRICE}            xpath=(//div[@class='inventory_item']//div[@class='inventory_item_price'])[1]
+${INVENTORY_ITEM_NAME_ALL}     css=.inventory_item_name
+${EXPECTED_PRICE_LOHI_FIRST}   $7.99
+${OVERVIEW_FIRST_ITEM_PRICE}   xpath=(//div[@class='inventory_item_price'])[1]
+${OVERVIEW_ITEM_NAME_ALL}      css=.cart_list .inventory_item_name
+
+# External domains
+${TWITTER_DOMAIN}              twitter.com
+${FACEBOOK_DOMAIN}             facebook.com
+${LINKEDIN_DOMAIN}             linkedin.com

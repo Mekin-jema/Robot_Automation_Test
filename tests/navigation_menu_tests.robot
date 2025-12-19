@@ -34,3 +34,11 @@ Logout From Menu Returns To Login
     Open Inventory Page
     Logout
     Title Should Be    Swag Labs
+
+Menu Open And Close Works
+    [Documentation]    Verify hamburger menu opens and closes
+    [Tags]    menu    ui
+    Open Inventory Page
+    Open Menu
+    Page Should Contain Element    ${MENU_CLOSE}
+    Close Menu
