@@ -1,9 +1,42 @@
-# Robot Framework outputs
-output.xml
-output/
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Robot Framework results
+results/
 log.html
+output.xml
 report.html
+playwright-log.txt
+output/
+
+# Virtual environments
+venv/
+env/
+ENV/
+.venv
+
+# IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# Test artifacts
 *.png
+*.jpg
+*.mp4
+selenium-screenshot-*.png
+
+# Logs
+*.log
 
 # Robot Framework temp files
 .rfresults
