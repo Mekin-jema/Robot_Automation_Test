@@ -4,10 +4,10 @@ Documentation     Login test cases for SauceDemo application
 ...               including valid credentials, invalid credentials,
 ...               empty fields, and locked out users.
 
-Resource          ../resources/variables.robot
+# Resource          ../resources/variables.robot
 Resource          ../resources/keywords.robot
 
-Suite Setup       Log To Console    \n🚀 Starting Login Test Suite
+Suite Setup       Initialize Suite
 Suite Teardown    Log To Console    \n✅ Login Test Suite Completed
 
 Test Teardown     Close Browser Session
