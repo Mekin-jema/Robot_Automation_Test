@@ -1,0 +1,45 @@
+# Robot Framework outputs
+output.xml
+output/
+log.html
+report.html
+*.png
+
+# Robot Framework temp files
+.rfresults
+.robotcache
+.rebot
+
+# Python cache
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+venv/
+.venv/
+env/
+ENV/
+
+# Node (if using Playwright)
+node_modules/
+playwright-report/
+test-results/
+
+# VS Code
+.vscode/
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Logs
+*.log
+
+# Coverage
+.coverage
+htmlcov/
+
+# dotenv
+.env
