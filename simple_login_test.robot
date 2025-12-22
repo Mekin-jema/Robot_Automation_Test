@@ -40,5 +40,5 @@ Locked Out User Test
     Wait Until Page Contains Element  xpath=//h3[@data-test='error']  timeout=10s
     Capture Page Screenshot  output/locked_out_user_test.png        
 
-*** Keywords ***
+# *** Keywords ***
 # No custom keywords needed here; test-level teardowns already close the browser.
