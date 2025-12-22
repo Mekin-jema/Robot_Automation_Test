@@ -40,8 +40,7 @@ Cancel Checkout From Step Two Returns To Inventory
     Begin Checkout
     Fill Checkout Information    John    Smith    00000
     Cancel Checkout From Step Two
-    Location Should Contain    inventory.html
-
+    Location Should Contain    inventory.html  # how this to be inventory.html i expect to be cart.html?
 Cart Badge Persists Across Navigation
     [Documentation]    Verify cart badge persists after visiting product detail and back
     [Tags]    cart    navigation

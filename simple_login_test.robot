@@ -11,6 +11,7 @@ Valid Login Test
     Input Text  id=user-name    standard_user
     Input Text  id=password  secret_sauce
     Click Button  id=login-button
+    # How to get the xpath name as per the current page structure
     Wait Until Page Contains Element  xpath=//div[@class='inventory_list']  timeout=10s
     Capture Page Screenshot  output/valid_login_test.png
     [Teardown]  Close Browser

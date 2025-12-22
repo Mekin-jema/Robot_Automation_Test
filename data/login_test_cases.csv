@@ -1,0 +1,5 @@
+username,password,expected_outcome,description
+standard_user,secret_sauce,success,Valid user logs in successfully
+invalid_user,wrong_password,failure,Invalid credentials should fail
+locked_out_user,secret_sauce,failure,Locked-out user should be blocked
+,,failure,Empty credentials should show error
